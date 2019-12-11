@@ -17,7 +17,7 @@ mat.task('less', function () {
 })
 
 mat.task('combine', function() {
-  mat.url([/.js/])
+  mat.url([/\.js/])
     .use(combine())
 })
 
