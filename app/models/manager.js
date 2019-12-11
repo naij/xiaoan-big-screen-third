@@ -37,6 +37,12 @@ Service.add([
     url: '/tp/getXfssbjXxForTp',
     method: 'POST'
   },
+  // 获取最近一次巡检结果
+  {
+    name: 'getZjXjjgForTp',
+    url: '/tp/getZjXjjgForTp',
+    method: 'POST'
+  },
   // 用传-获取指定时间范围内，每月新增联网单位数
   {
     name: 'getMyxzLwdwsForTp',

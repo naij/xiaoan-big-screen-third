@@ -17,7 +17,7 @@ module.exports = Magix.View.extend({
   renderNetworkingTotalChart: function () {
     var me = this
     me.request().all([{
-      name: 'getLwdwAndJcdCountForTp',
+      name: 'getZjXjjgForTp',
       params: {
         key: 'XAlwjc119'
       }
@@ -26,10 +26,10 @@ module.exports = Magix.View.extend({
 
       var data = [{
         item: '离线',
-        count: 33
+        count: res.lxs
       }, {
         item: '在线',
-        count: 2135
+        count: res.zxs
       }]
       var chart = new G2.Chart({
         container: 'networkingTotalChart',
