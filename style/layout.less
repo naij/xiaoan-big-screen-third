@@ -14,7 +14,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     padding-left: 30px;
-    background-color: #6a6ae4;
+    background-color: @color-brand;
     
     a {
       color: #fff;
@@ -36,12 +36,15 @@ body {
         display: block;
         font-size: 14px;
         padding: 12px 0 12px 30px;
+        outline: none;
       }
       &.active {
         background-color: #2b2b38;
 
         a {
-          color: #6a6ae4;
+          color: #fff;
+          border-left: 2px solid @color-brand;
+          padding-left: 28px;
         }
       }
       .iconfont {
@@ -50,6 +53,41 @@ body {
       }
     }
   }
+}
+
+.content {
+  color: #454545;
+  margin-left: 225px;
+}
+.page-header {
+  border-bottom: 1px solid #eee;
+  padding: 0 30px;
+  background-color: #fff;
+
+  .title-bar {
+    float: left;
+    height: 75px;
+    line-height: 75px;
+  }
+  .title {
+    color:#333;
+    display:inline-block;
+    font-size:18px;
+    margin-right:20px;
+    font-weight:normal;
+  }
+  .userinfo {
+    float: right;
+    line-height: 75px;
+    cursor: default;
+
+    .iconfont {
+      margin-right: 5px;
+    }
+  }
+}
+.page-body {
+  padding: 30px;
 }
 
 .status-404 {

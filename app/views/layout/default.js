@@ -16,9 +16,14 @@ module.exports = Magix.View.extend({
     }
 
     me.data = {
+      username: 'admin',
       mainView: 'app/views/pages' + path
     }
     me.setView()
     me.animateLoading()
+  },
+  setPageHead(title) {
+    this.data.title = title
+    this.setView()
   }
 })

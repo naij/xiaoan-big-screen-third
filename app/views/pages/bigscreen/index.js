@@ -185,7 +185,7 @@ module.exports = Magix.View.extend({
     me.mapInstance = mapInstance
   },
   showInfoDialog: function(data) {
-    this.mxDialog('app/views/pages/info', {
+    this.mxDialog('app/views/pages/bigscreen/info', {
       width: 1000,
       height: 600,
       data: data

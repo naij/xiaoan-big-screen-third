@@ -36,6 +36,24 @@ Service.add([
     name: 'getXfssbjXxForTp',
     url: '/tp/getXfssbjXxForTp',
     method: 'POST'
+  },
+  // 用传-获取指定时间范围内，每月新增联网单位数
+  {
+    name: 'yc_getMyxzLwdwsForTp',
+    url: '/tp/getMyxzLwdwsForTp',
+    method: 'POST'
+  },
+  // 获取指定时间范围内故障率最高N家单位
+  {
+    name: 'getGzlzgdwForTp',
+    url: '/tp/getGzlzgdwForTp',
+    method: 'POST'
+  },
+  // 获取指定时间范围内误报率最高N家单位
+  {
+    name: 'getWblzgdwForTp',
+    url: '/tp/getWblzgdwForTp',
+    method: 'POST'
   }
 ])
 
