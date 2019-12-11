@@ -23,13 +23,6 @@ module.exports = Magix.View.extend({
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
-      var lwdwzs = 2168
-      
-      me.data.lwdwzs = lwdwzs.toLocaleString('en-US')
-      me.data.jcdzs = res.jcdzs.toLocaleString('en-US')
-      me.data.lxs = 33
-      me.data.zxs = 2135
-      me.setView()
 
       var data = [{
         item: '离线',
@@ -76,7 +69,7 @@ module.exports = Magix.View.extend({
   renderAddedCountChart: function () {
     var me = this
     me.request().all([{
-      name: 'yc_getMyxzLwdwsForTp',
+      name: 'getMyxzLwdwsForTp',
       params: {
         key: 'XAlwjc119',
         params: {

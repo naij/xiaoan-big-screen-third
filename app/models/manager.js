@@ -39,7 +39,7 @@ Service.add([
   },
   // 用传-获取指定时间范围内，每月新增联网单位数
   {
-    name: 'yc_getMyxzLwdwsForTp',
+    name: 'getMyxzLwdwsForTp',
     url: '/tp/getMyxzLwdwsForTp',
     method: 'POST'
   },
@@ -53,6 +53,18 @@ Service.add([
   {
     name: 'getWblzgdwForTp',
     url: '/tp/getWblzgdwForTp',
+    method: 'POST'
+  },
+  // 获取当前电气设备总数、正常数、报警数
+  {
+    name: 'getDqsbzsZcsBjsForTp',
+    url: '/tp/getDqsbzsZcsBjsForTp',
+    method: 'POST'
+  },
+  // 获取指定时间范围内，每月新增电气设备数
+  {
+    name: 'getMyxzDqsbsForTp',
+    url: '/tp/getMyxzDqsbsForTp',
     method: 'POST'
   }
 ])

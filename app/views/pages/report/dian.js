@@ -13,26 +13,19 @@ module.exports = Magix.View.extend({
   renderNetworkingTotalChart: function () {
     var me = this
     me.request().all([{
-      name: 'getLwdwAndJcdCountForTp',
+      name: 'getDqsbzsZcsBjsForTp',
       params: {
         key: 'XAlwjc119'
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
-      var lwdwzs = 2168
-      
-      me.data.lwdwzs = lwdwzs.toLocaleString('en-US')
-      me.data.jcdzs = res.jcdzs.toLocaleString('en-US')
-      me.data.lxs = 33
-      me.data.zxs = 2135
-      me.setView()
 
       var data = [{
-        item: '离线',
-        count: 33
+        item: '报警数',
+        count: res.bjs
       }, {
-        item: '在线',
-        count: 2135
+        item: '正常数',
+        count: res.zcs
       }]
       var chart = new G2.Chart({
         container: 'networkingTotalChart',
@@ -72,7 +65,7 @@ module.exports = Magix.View.extend({
   renderAddedCountChart: function () {
     var me = this
     me.request().all([{
-      name: 'yc_getMyxzLwdwsForTp',
+      name: 'getMyxzDqsbsForTp',
       params: {
         key: 'XAlwjc119',
         params: {
@@ -87,7 +80,7 @@ module.exports = Magix.View.extend({
       res.forEach(function(v, i) {
         data.push({
           month: v.tjrq.replace('年','-').replace('月',''),
-          value: v.lwdws
+          value: v.dqsbs
         })
       })
       
