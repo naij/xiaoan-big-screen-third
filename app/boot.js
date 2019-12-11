@@ -22,7 +22,28 @@ seajs.config({
 })
 
 seajs.use(['magix', 'jquery'], function(Magix, $) {
+  Magix.checkToLogin =  function() {
+    if (!Magix.config('isLogined')) {
+      location.href = '/member/login'
+    }
+  }
+
   Magix.boot({
     ini: 'app/ini'
   })
+
+  // $.ajax({
+  //   url: '/api/member/admin/pubinfo.json',
+  //   dataType: 'json',
+  //   complete: function(xhr, text) {
+  //     var resp = $.parseJSON(xhr.responseText)
+  //     Magix.config({'isLogined': resp.data.isLogined})
+  //     Magix.config({'csrf': resp.data.csrf})
+  //     Magix.config({'username': resp.data.username})
+
+  //     Magix.boot({
+  //       ini: 'app/ini'
+  //     })
+  //   }
+  // })
 })

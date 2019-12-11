@@ -1,0 +1,12 @@
+<h1 class="title"><a href="/">智慧消防</a></h1>
+
+<ul class="main-nav">
+  {{#for(item in menuList)}}
+  <li t-class:active="item.active">
+    <a href="{{item.path}}">
+      <span class="iconfont {{item.icon}}"></span>
+      <span>{{item.name}}</span>
+    </a>
+  </li>
+  {{/for}}
+</ul>

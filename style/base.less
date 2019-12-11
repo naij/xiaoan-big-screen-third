@@ -20,9 +20,71 @@
 @color-border:#E2E2E9;
 
 /**
+ * 公用方法
+ **/
+ .border-radius (@radius) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+.box-shadow (@value) {
+  -moz-box-shadow: @value;
+  -webkit-box-shadow: @value;
+  -ms-box-shadow: @value;
+  -o-box-shadow: @value;
+  box-shadow: @value;
+}
+.box-sizing(@value){
+  -moz-box-shadow: @value;
+  -webkit-box-shadow: @value;
+  box-shadow: @value;
+}
+.auto-height (@height) {
+  height: auto !important;
+  height: @height;
+  min-height: @height;
+}
+.opacity (@value) {
+  @opacityPercentage: @value * 100;
+  opacity: @value;
+  filter:alpha(opacity=@opacityPercentage);
+}
+.transition (@value) {
+  transition: @value;
+  -moz-transition: @value;
+  -webkit-transition: @value;
+  -ms-transition: @value;
+  -o-transition: @value;
+}
+.transform (@value) {
+  -webkit-transform: @value;
+  -moz-transform: @value;
+  -ms-transform: @value;
+  -o-transform: @value;
+}
+.animation (@value) {
+  -webkit-animation: @value;
+  -moz-animation: @value;
+  -ms-animation: @value;
+  -o-animation: @value;
+  animation: @value;
+}
+.retina (@bg1, @bg2) {
+  background: url(@bg1);
+  background-image: -webkit-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -moz-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -ms-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-image: -o-image-set(url(@bg1) 1x,url(@bg2) 2x);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/**
  * iconfont
  **/
-@import url("//at.alicdn.com/t/font_1440818_cqo5adxlteh.css");
+@import url("//at.alicdn.com/t/font_1440818_21wq4jo3ki2.css");
 
 /**
  * 链接定义

@@ -1,7 +1,6 @@
 var Magix = require('magix')
 var $ = require('jquery')
 var util = require('app/util/index')
-var mapdata = require('app/views/pages/mapdata')
 var Dialog = require('app/mixins/dialog')
 
 module.exports = Magix.View.extend({
@@ -133,6 +132,7 @@ module.exports = Magix.View.extend({
       mapStyle: 'amap://styles/dark'
     })
 
+    /*
     AMapUI.loadUI(['misc/PointSimplifier'], function(PointSimplifier) {
       //创建组件实例
       var pointSimplifierIns = new PointSimplifier({
@@ -181,7 +181,7 @@ module.exports = Magix.View.extend({
 
       me.pointSimplifierIns = pointSimplifierIns
     })
-
+    */
     me.mapInstance = mapInstance
   },
   showInfoDialog: function(data) {

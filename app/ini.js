@@ -4,7 +4,15 @@ var $ = require('jquery')
 
 var routeMap = {
   'app/views/layout/default': [
-    {path: '/'}
+    {path: '/', loginRequire: true},
+    {path: '/home/overview', loginRequire: true},
+    {path: '/report/yongchuan', loginRequire: false},
+    {path: '/report/dian', loginRequire: false},
+    {path: '/report/shui', loginRequire: false}
+  ],
+  'app/views/layout/blank': [
+    {path: '/member/login', loginRequire: false},
+    {path: '/bigscreen/index', loginRequire: false}
   ]
 }
 var routes = function() {
@@ -16,6 +24,19 @@ var routes = function() {
   })
   return s
 }()
+
+Router.on('changed', function (e) {
+  if (!e.path) return
+  $.each(routeMap, function(k, item) {
+    $.each(item, function(i, v) {
+      if (v.path == e.path.to) {
+        if (v.loginRequire) {
+          Magix.checkToLogin()
+        }
+      }
+    })
+  })
+})
 
 
 return {
