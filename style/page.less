@@ -101,10 +101,10 @@
       justify-content: space-between;
     }
     .top-wrapper {
-      flex-basis: 66.66%;
+      flex-basis: 70%;
     }
     .bottom-wrapper {
-      flex-basis: 33.33%;
+      flex-basis: 30%;
     }
   
     .module {
@@ -605,141 +605,82 @@
     }
   }
   .building-info {
-    left: 60%;
-    margin-left: -125px;
-    top: 355px;
-  }
-  .building-info .row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .building-info .row:last-child {
-    margin-bottom: 0;
-  }
-  .building-info .row .building-name {
-    max-width: 170px;
-    padding-right: 10px;
-  }
-  .building-info .row .building-type .value {
-    width: 90px;
-    height: 56px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .building-info .line-group .line-1 {
-    width: 30px;
-    left: 50%;
-    top: -1px;
-    transform: rotate(-90deg);
-    transform-origin: left bottom;
-  }
-  .building-info .line-group .line-2 {
-    width: 133px;
-    right: 159px;
-    top: -30px;
-    transform: rotate(3deg);
-    transform-origin: right top;
-  }
-  .building-info .line-group .line-3 {
-    width: 16px;
-    left: 25px;
-    top: -38px;
-    transform: rotate(-90deg);
-    transform-origin: left bottom;
-  }
-  .building-info .line-group .line-3 .circle {
-    right: -4px;
+    left: 0;
+    top: 100px;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .building-name {
+        max-width: 170px;
+        padding-right: 10px;
+      }
+      .building-type .value {
+        width: 90px;
+        height: 56px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .line-group {
+      .line-1 {
+        left: 316px;
+        top: 132px;
+      }
+      .line-2 {
+        left: 386px;
+        top: 132px;
+        transform: rotate(45deg);
+        transform-origin: left top;
+      }
+      .line-3 {
+        left: 435px;
+        top: 181px;
+        width: 45px;
+      }
+      .line-3 .circle {
+        right: -4px;
+      }
+    }
   }
 
   .alarm-info {
     right: 0;
     top: 0;
-  }
-  .alarm-info .row {
-    margin-bottom: 20px;
-  }
-  .alarm-info .row:last-child {
-    margin-bottom: 0;
-  }
-  .alarm-info .line-group .line-1 {
-    right: 316px;
-    top: 125px;
-  }
-  .alarm-info .line-group .line-2 {
-    width: 163px;
-    right: 386px;
-    top: 125px;
-    transform: rotate(-73deg);
-    transform-origin: right top;
-  }
-  .alarm-info .line-group .line-3 {
-    width: 48px;
-    right: 433px;
-    top: 281px;
-  }
-  .alarm-info .line-group .line-3 .circle {
-    left: -4px;
-  }
 
-  .device-info {
-    left: 0;
-    top: 100px;
-  }
-  .device-info .row {
-    margin-bottom: 20px;
-  }
-  .device-info .row:last-child {
-    margin-bottom: 0px;
-  }
-  .device-info .row .value {
-    font-size: 16px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-  }
-  .device-info .row .value .square {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #038d23;
-    margin: 0 5px 0 15px;
-    vertical-align: middle;
-    transform: skewX(-30deg);
-  }
-  .device-info .row .value .square-unusual {
-    background-color: #ff7c4f;
-  }
-  .device-info .row .value .level {
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 71px;
-    height: 28px;
-    padding-left: 35px;
-  }
-  .device-info .row .value .level-1 {
-    background-image: url(../img/level_1.png);
-  }
-  .device-info .row .value .level-2 {
-    background-image: url(../img/level_2.png);
-  }
-  .device-info .line-group .line-1 {
-    left: 316px;
-    top: 132px;
-  }
-  .device-info .line-group .line-2 {
-    left: 386px;
-    top: 132px;
-    transform: rotate(45deg);
-    transform-origin: left top;
-  }
-  .device-info .line-group .line-3 {
-    left: 435px;
-    top: 181px;
-    width: 45px;
-  }
-  .device-info .line-group .line-3 .circle {
-    right: -4px;
+    .row {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .line-group {
+      .line-1 {
+        right: 316px;
+        top: 125px;
+      }
+      .line-2 {
+        width: 163px;
+        right: 386px;
+        top: 125px;
+        transform: rotate(-73deg);
+        transform-origin: right top;
+      }
+      .line-3 {
+        width: 48px;
+        right: 433px;
+        top: 281px;
+      }
+      .line-3 .circle {
+        left: -4px;
+      }
+    }
   }
 }
 

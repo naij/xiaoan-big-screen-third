@@ -24,10 +24,11 @@ module.exports = Magix.View.extend({
       me.connect()
       
       me.renderWeather()
-      me.renderNetworkingTotalChart()
+      me.renderYCNetworkingTotalChart()
       me.renderFalseAlarmChart()
       me.renderBreakdownChart()
       // me.renderRealFireAlarmChart()
+      me.renderDianNetworkingTotalChart()
     })
   },
   connect: function () {
@@ -309,43 +310,51 @@ module.exports = Magix.View.extend({
       })
     })
   },
-  // 联网总数
-  renderNetworkingTotalChart: function() {
+  // 用传联网总数
+  renderYCNetworkingTotalChart: function() {
     var me = this
     me.request().all([{
-      name: 'getLwdwAndJcdCountForTp',
+      name: 'getZjXjjgForTp',
       params: {
         key: 'XAlwjc119'
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
-      var lwdwzs = 2168
-      
-      me.data.lwdwzs = lwdwzs.toLocaleString('en-US')
-      me.data.jcdzs = res.jcdzs.toLocaleString('en-US')
-      me.data.lxs = 33
-      me.data.zxs = 2135
-      me.setView()
 
       var data = [{
         item: '离线',
-        count: 33
+        count: res.lxs
       }, {
         item: '在线',
-        count: 2135
+        count: res.zxs
       }]
       var chart = new G2.Chart({
-        container: 'networkingTotalChart',
+        container: 'ycNetworkingTotalChart',
         forceFit: true,
-        height: 120,
+        height: $('#ycNetworkingTotalChart').parent().height(),
         data: data,
-        padding: 14
+        padding: [20, 20, 50, 20]
       })
-      chart.coord('theta')
+      chart.coord('theta', {
+        radius: 0.6
+      })
       chart.tooltip({
         showTitle: false
       })
-      chart.intervalStack().position('count').color('item', ['#f89a0d', '#ff6600'])
+      chart.intervalStack()
+        .position('count')
+        .color('item', ['#f89a0d', '#ff6600'])
+        .label('count', {
+          formatter: (val, item) => {
+            return item.point.item + ': ' + val;
+          }
+        })
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
+        })
       chart.render()
     })
   },
@@ -536,6 +545,53 @@ module.exports = Magix.View.extend({
           return '#f89a0d'
         }
       })
+      chart.render()
+    })
+  },
+  renderDianNetworkingTotalChart: function () {
+    var me = this
+    me.request().all([{
+      name: 'getDqsbzsZcsBjsForTp',
+      params: {
+        key: 'XAlwjc119'
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+
+      var data = [{
+        item: '报警数',
+        count: res.bjs
+      }, {
+        item: '正常数',
+        count: res.zcs
+      }]
+      var chart = new G2.Chart({
+        container: 'dianNetworkingTotalChart',
+        forceFit: true,
+        height: $('#dianNetworkingTotalChart').parent().height(),
+        data: data,
+        padding: [20, 20, 50, 20]
+      })
+      chart.coord('theta', {
+        radius: 0.6
+      })
+      chart.tooltip({
+        showTitle: false
+      })
+      chart.intervalStack()
+        .position('count')
+        .color('item', ['#ff6600', '#f89a0d'])
+        .label('count', {
+          formatter: (val, item) => {
+            return item.point.item + ': ' + val;
+          }
+        })
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
+        })
       chart.render()
     })
   },

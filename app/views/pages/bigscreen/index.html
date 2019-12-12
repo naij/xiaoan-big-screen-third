@@ -37,24 +37,7 @@
         <div class="module networking-total">
           <h3 class="headline">用传联网情况</h3>
           <div class="content-wrapper">
-            <div class="sum">
-              <h4>总联网数量</h4>
-              <div class="number">
-                <div class="fs-16">{{lwdwzs}}</div>
-                <!-- <div class="fs-12">千件</div> -->
-              </div>
-            </div>
-            <div class="detail">
-              <div class="group-field">
-                <span class="group-item mr5">
-                  <span class="color-f89a0d">离线 {{lxs}}</span>
-                </span>
-                <span class="group-item">
-                  <span class="color-ff6600">在线 {{zxs}}</span>
-                </span>
-              </div>
-              <div class="chart-container" id='networkingTotalChart' style='width:120px;height:120px;'></div>
-            </div>
+            <div class="chart-wrapper" id='ycNetworkingTotalChart'></div>
           </div>
           <div class="bevel-group">
             <div class="bevel bevel-top-left"></div>
@@ -82,7 +65,7 @@
         <div class="module misinformation-rate">
           <h3 class="headline">电气联网情况</h3>
           <div class="content-wrapper">
-            
+            <div class="chart-wrapper" id='dianNetworkingTotalChart'></div>
           </div>
           <div class="bevel-group">
             <div class="bevel bevel-top-left"></div>
