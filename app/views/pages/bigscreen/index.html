@@ -9,7 +9,7 @@
   <div class="main">
     <div class="top-wrapper">
       <div class="top-left-wrapper">
-        <div class="grid weather">
+        <div class="module weather">
           <div class="bevel-group">
             <div class="bevel bevel-top-left"></div>
             <div class="bevel bevel-top-right"></div>
@@ -34,8 +34,8 @@
             </div>
           </div>
         </div>
-        <div class="grid networking-total">
-          <h3 class="headline">联网情况</h3>
+        <div class="module networking-total">
+          <h3 class="headline">用传联网情况</h3>
           <div class="content-wrapper">
             <div class="sum">
               <h4>总联网数量</h4>
@@ -79,10 +79,10 @@
         </div> -->
       </div>
       <div class="top-right-wrapper">
-        <div class="grid misinformation-rate">
-          <h3 class="headline">误报率</h3>
+        <div class="module misinformation-rate">
+          <h3 class="headline">电气联网情况</h3>
           <div class="content-wrapper">
-            <div id="falseAlarmChart" style='width:280px;height:200px;'></div>
+            
           </div>
           <div class="bevel-group">
             <div class="bevel bevel-top-left"></div>
@@ -91,10 +91,10 @@
             <div class="bevel bevel-bottom-right"></div>
           </div>
         </div>
-        <div class="grid failure-rate">
-          <h3 class="headline">故障率</h3>
+        <div class="module failure-rate">
+          <h3 class="headline">电气七天报警分析</h3>
           <div class="content-wrapper">
-            <div id="breakdownChart" style='width:280px;height:200px;'></div>
+            
           </div>
           <div class="bevel-group">
             <div class="bevel bevel-top-left"></div>
@@ -106,10 +106,10 @@
       </div>
     </div>
     <div class="bottom-wrapper">
-      <div class="grid left">
-        <h3 class="headline">真实火警数</h3>
+      <div class="module">
+        <h3 class="headline">用传误报率</h3>
         <div class="content-wrapper">
-          <div id="realFireAlarmChart" class="overflow-hidden"></div>
+          <div class="chart-wrapper" id="falseAlarmChart"></div>
         </div>
         <div class="bevel-group">
           <div class="bevel bevel-top-left"></div>
@@ -118,23 +118,10 @@
           <div class="bevel bevel-bottom-right"></div>
         </div>
       </div>
-      <div class="grid middle">
-        <h3 class="headline">消防用水监测</h3>
+      <div class="module">
+        <h3 class="headline">用传故障率</h3>
         <div class="content-wrapper">
-          <div class="item-wrapper">
-            <div class="icon icon-water-level"></div>
-            <div class="attr">
-              <div class="value">491</div>
-              <div class="title">水位总检测点数</div>
-            </div>
-          </div>
-          <div class="item-wrapper">
-            <div class="icon icon-pressure"></div>
-            <div class="attr">
-              <div class="value">645</div>
-              <div class="title">水压总检测点数</div>
-            </div>
-          </div>
+          <div class="chart-wrapper" id="breakdownChart"></div>
         </div>
         <div class="bevel-group">
           <div class="bevel bevel-top-left"></div>
@@ -143,16 +130,22 @@
           <div class="bevel bevel-bottom-right"></div>
         </div>
       </div>
-      <div class="grid right">
-        <h3 class="headline">用电安全监测</h3>
+      <div class="module">
+        <h3 class="headline">用传误报单位排序</h3>
         <div class="content-wrapper">
-          <div class="item-wrapper">
-            <div class="icon icon-electricity"></div>
-            <div class="attr">
-              <div class="value">1897</div>
-              <div class="title">电气总检测点数</div>
-            </div>
-          </div>
+          
+        </div>
+        <div class="bevel-group">
+          <div class="bevel bevel-top-left"></div>
+          <div class="bevel bevel-top-right"></div>
+          <div class="bevel bevel-bottom-left"></div>
+          <div class="bevel bevel-bottom-right"></div>
+        </div>
+      </div>
+      <div class="module">
+        <h3 class="headline">用传故障单位排序</h3>
+        <div class="content-wrapper">
+          
         </div>
         <div class="bevel-group">
           <div class="bevel bevel-top-left"></div>

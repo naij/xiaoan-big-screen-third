@@ -22,7 +22,7 @@ mat.task('combine', function() {
 })
 
 mat.task('pushState', function () {
-  mat.url([/^((?!(\/tp\/|\.(css|less|js|html|ico|swf))).)*$/])
+  mat.url([/^((?!(\/tp\/|\.(css|less|js|html|ico|swf|png|gif))).)*$/])
     .rewrite([
       [/(\/.*)+/, 'debug.html']
     ])

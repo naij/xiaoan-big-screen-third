@@ -19,16 +19,6 @@ module.exports = Magix.View.extend({
       var headerHeight = $('.header').height()
       var mainHeight = windowHeight - headerHeight
       $('.main').height(mainHeight)
-      // 设置图表显示宽高
-      var $falseAlarmChart = $('#falseAlarmChart')
-      var $breakdownChart = $('#breakdownChart')
-      var $realFireAlarmChart = $('#realFireAlarmChart')
-      $falseAlarmChart.height($falseAlarmChart.parent().height())
-      $breakdownChart.height($breakdownChart.parent().height())
-      $realFireAlarmChart.height($realFireAlarmChart.parent().height())
-      $falseAlarmChart.width($falseAlarmChart.parent().width())
-      $breakdownChart.width($breakdownChart.parent().width())
-      $realFireAlarmChart.width($realFireAlarmChart.parent().width())
 
       me.renderMap()
       me.connect()
@@ -37,7 +27,7 @@ module.exports = Magix.View.extend({
       me.renderNetworkingTotalChart()
       me.renderFalseAlarmChart()
       me.renderBreakdownChart()
-      me.renderRealFireAlarmChart()
+      // me.renderRealFireAlarmChart()
     })
   },
   connect: function () {
@@ -318,7 +308,6 @@ module.exports = Magix.View.extend({
         me.setView()
       })
     })
-    
   },
   // 联网总数
   renderNetworkingTotalChart: function() {
@@ -385,7 +374,7 @@ module.exports = Magix.View.extend({
         forceFit: true,
         height: $('#falseAlarmChart').parent().height(),
         data: data,
-        padding: [20, 30, 70, 40]
+        padding: [20, 30, 40, 40]
       })
       chart.axis('month', {
         label: {
@@ -417,8 +406,8 @@ module.exports = Magix.View.extend({
           alias: '误报率' // 为属性定义别名
         }
       })
-      chart.area().position('month*value').color('value', ['#9c4003']).tooltip(false)
-      chart.line().position('month*value').color('value', ['#c25004'])
+      chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
+      chart.line().position('month*value').color('value', '#c25004')
       chart.render()
     })
   },
@@ -447,7 +436,7 @@ module.exports = Magix.View.extend({
         forceFit: true,
         height: $('#breakdownChart').parent().height(),
         data: data,
-        padding: [20, 30, 70, 40]
+        padding: [20, 30, 40, 40]
       })
       chart.axis('month', {
         label: {
@@ -479,8 +468,8 @@ module.exports = Magix.View.extend({
           alias: '故障率' // 为属性定义别名
         }
       })
-      chart.area().position('month*value').color('value', ['#9c4003']).tooltip(false)
-      chart.line().position('month*value').color('value', ['#c25004'])
+      chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
+      chart.line().position('month*value').color('value', '#c25004')
       chart.render()
     })    
   },
