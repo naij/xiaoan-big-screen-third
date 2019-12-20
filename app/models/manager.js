@@ -51,14 +51,14 @@ Service.add([
   },
   // 获取指定时间范围内故障率最高N家单位
   {
-    name: 'getGzlzgdwForTp',
-    url: '/tp/getGzlzgdwForTp',
+    name: 'getMyGzlzgdwForTp',
+    url: '/tp/getMyGzlzgdwForTp',
     method: 'POST'
   },
   // 获取指定时间范围内误报率最高N家单位
   {
-    name: 'getWblzgdwForTp',
-    url: '/tp/getWblzgdwForTp',
+    name: 'getMyWblzgdwForTp',
+    url: '/tp/getMyWblzgdwForTp',
     method: 'POST'
   },
   // 获取当前电气设备总数、正常数、报警数
@@ -71,6 +71,12 @@ Service.add([
   {
     name: 'getMyxzDqsbsForTp',
     url: '/tp/getMyxzDqsbsForTp',
+    method: 'POST'
+  },
+  // 获取电气设备各类报警次数
+  {
+    name: 'getDqsbGlBjsForTp',
+    url: '/tp/getDqsbGlBjsForTp',
     method: 'POST'
   }
 ])

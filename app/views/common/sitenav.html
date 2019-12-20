@@ -1,0 +1,10 @@
+<ul class="site-nav">
+  {{#for(item in menuList)}}
+  <li t-class:active="item.active">
+    <a href="{{item.path}}">
+      <span class="iconfont {{item.icon}}"></span>
+      <span>{{item.name}}</span>
+    </a>
+  </li>
+  {{/for}}
+</ul>

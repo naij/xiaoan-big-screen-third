@@ -1,5 +1,6 @@
 var Magix = require('magix')
 var $ = require('jquery')
+var moment = require('moment')
 var util = require('app/util/index')
 var Dialog = require('app/mixins/dialog')
 
@@ -9,6 +10,7 @@ module.exports = Magix.View.extend({
   render: function() {
     var me = this
 
+    me.chartArray = []
     me.data = {
       switcher: {
         type: 1
@@ -27,16 +29,24 @@ module.exports = Magix.View.extend({
       me.renderYCNetworkingTotalChart()
       me.renderFalseAlarmChart()
       me.renderBreakdownChart()
-      // me.renderRealFireAlarmChart()
+      me.renderDianAlarmCountChart()
       me.renderDianNetworkingTotalChart()
+      me.renderBreakdownUnit()
+      me.renderFalseAlarmUnit()
+    })
+
+    me.on('destroy', function() {
+      me.chartArray.forEach(function(v) {
+        v.destroy()
+      })
     })
   },
   connect: function () {
     var me = this
-    var connection = $.hubConnection('http://183.129.224.22:8089')
     //如果前后端为同一个端口，可不填参数。如果前后端分离，这里参数为服务器端的URL
-    var chatHubProxy = connection.createHubProxy('ServiceHub')
-    // ServiceHub为后端定义，使用驼峰式命名，后端首字母必须大写
+    var connection = $.hubConnection('http://183.129.224.22:8090')
+    // DispatchHub为后端定义，使用驼峰式命名，后端首字母必须大写
+    var chatHubProxy = connection.createHubProxy('DispatchHub')
     // ReveiceAlarm 为后端ServiceHub方法
     chatHubProxy.on('ReveiceAlarm', function(res, message) {
       var alarmList = res
@@ -50,7 +60,8 @@ module.exports = Magix.View.extend({
     connection.start()
       .done(function(){ 
         console.log('Now connected, connection ID=' + connection.id)
-        chatHubProxy.invoke('Register')
+        // chatHubProxy.invoke('Register')
+        chatHubProxy.invoke('Connect', {'name': 'hzgs', 'password': 'hzgs119'})
       })
       .fail(function(){ console.log('Could not connect') })
   },
@@ -356,6 +367,7 @@ module.exports = Magix.View.extend({
           }
         })
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   // 误报率
@@ -418,6 +430,7 @@ module.exports = Magix.View.extend({
       chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
       chart.line().position('month*value').color('value', '#c25004')
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   // 故障率
@@ -480,35 +493,79 @@ module.exports = Magix.View.extend({
       chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
       chart.line().position('month*value').color('value', '#c25004')
       chart.render()
+      me.chartArray.push(chart)
     })    
   },
-  // 真实火警
-  renderRealFireAlarmChart: function() {
+  // 故障单位排序
+  renderBreakdownUnit: function () {
     var me = this
     me.request().all([{
-      name: 'get12MonthZshjForTp',
+      name: 'getMyGzlzgdwForTp',
       params: {
-        key: 'XAlwjc119'
+        key: 'XAlwjc119',
+        params: {
+          n: 5,
+          kssj: moment().subtract(1, 'months').format("YYYY-MM-DD")
+        }
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+      me.data.breakdownUnitList = res
+      me.setView()
+    })
+  },
+  // 误报单位排序
+  renderFalseAlarmUnit: function () {
+    var me = this
+    me.request().all([{
+      name: 'getMyWblzgdwForTp',
+      params: {
+        key: 'XAlwjc119',
+        params: {
+          n: 5,
+          kssj: moment().subtract(1, 'months').format("YYYY-MM-DD")
+        }
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+      me.data.falseAlarmUnitList = res
+      me.setView()
+    })
+  },
+  // 电气七天报警分析
+  renderDianAlarmCountChart: function() {
+    var me = this
+    var fieldMap = [
+      {field:'gzs', label: '过载数'},
+      {field:'yws', label: '烟雾数'},
+      {field:'lds2', label: '漏电数'},
+      {field:'lxs', label: '离线数'},
+      {field:'lds', label: '联动数'}
+    ]
+    me.request().all([{
+      name: 'getDqsbGlBjsForTp',
+      params: {
+        key: 'XAlwjc119',
+        kssj: moment().subtract(7, 'days').format("YYYY-MM-DD"),
+        jssj: moment().subtract(1, 'days').format("YYYY-MM-DD")
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
       var data = []
-      res.forEach(function(v, i) {
-        if (i > 2) {
-          data.push({
-            month: v.tjrq.replace('年','-').replace('月',''),
-            value: v.zshjs
-          })
-        }
+      fieldMap.forEach(function(v, i) {
+        data.push({
+          field: v.label,
+          value: res[v.field]
+        })
       })
       var chart = new G2.Chart({
-        container: 'realFireAlarmChart',
+        container: 'dianAlarmCountChart',
         forceFit: true,
-        height: $('#realFireAlarmChart').parent().height(),
+        height: $('#dianAlarmCountChart').parent().height(),
         data: data,
-        padding: [10, 20, 60, 50]
+        padding: [10, 20, 40, 50]
       })
-      chart.axis('month', {
+      chart.axis('field', {
         label: {
           textStyle: {
             fill: '#ccc', // 文本的颜色
@@ -531,14 +588,14 @@ module.exports = Magix.View.extend({
         }
       })
       chart.scale({
-        month: {
-          alias: '月份' // 为属性定义别名
+        field: {
+          alias: '字段' // 为属性定义别名
         },
         value: {
-          alias: '火警数' // 为属性定义别名
+          alias: '数值' // 为属性定义别名
         }
       })
-      chart.interval().position('month*value').color('value', function(value) {
+      chart.interval().position('field*value').color('value', function(value) {
         if (value > 100) {
           return '#ff6600'
         } else if (value < 50) {
@@ -546,6 +603,7 @@ module.exports = Magix.View.extend({
         }
       })
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   renderDianNetworkingTotalChart: function () {
@@ -593,6 +651,7 @@ module.exports = Magix.View.extend({
           }
         })
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   'switchPoiner<click>': function(e) {

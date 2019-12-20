@@ -1,5 +1,5 @@
 body {
-  background-color: #f6f6f6;
+  background-color: #2a2a2a;
 }
 
 .sidenav {
@@ -56,9 +56,52 @@ body {
   }
 }
 
-.content {
+.layout-header {
+  height: 88px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .title {
+    height: 88px;
+    width: 230px;
+    background-image: -webkit-image-set(url(../img/logo_1x.png) 1x,url(../img/logo_2x.png) 2x);
+    background-position: 30px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .site-nav {
+    position: absolute;
+    right: 30px;
+    top: 22px;
+
+    li {
+      float: left;
+      margin-left: 10px;
+
+      a {
+        color: #ccc;
+        float: left;
+        padding: 10px 20px;
+        outline: none;
+        border-radius: 6px;
+      }
+      a:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      &.active {
+        a {
+          background-color: rgba(0, 0, 0, 0.8);
+          
+          color: #eee;
+        }
+      }
+    }
+  }
+}
+.layout-content {
   color: #454545;
-  margin-left: 225px;
+  // margin-left: 225px;
 }
 .page-header {
   border-bottom: 1px solid #eee;

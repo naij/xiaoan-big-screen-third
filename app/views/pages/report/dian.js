@@ -5,9 +5,16 @@ module.exports = Magix.View.extend({
   tmpl: '@dian.html',
   render: function() {
     var me = this
+    me.chartArray = []
     me.setView().then(function() {
       me.renderNetworkingTotalChart()
       me.renderAddedCountChart()
+    })
+
+    me.on('destroy', function() {
+      me.chartArray.forEach(function(v) {
+        v.destroy()
+      })
     })
   },
   renderNetworkingTotalChart: function () {
@@ -59,6 +66,7 @@ module.exports = Magix.View.extend({
           stroke: '#fff'
         })
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   // 每月新增开通量
@@ -91,6 +99,28 @@ module.exports = Magix.View.extend({
         data: data,
         padding: [20, 30, 40, 40]
       })
+      chart.axis('month', {
+        label: {
+          textStyle: {
+            fill: '#ccc', // 文本的颜色
+          }
+        },
+        line: {
+          stroke: '#333', // 设置线的颜色
+        }
+      })
+      chart.axis('value', {
+        label: {
+          textStyle: {
+            fill: '#ccc', // 文本的颜色
+          }
+        },
+        grid: {
+          lineStyle: {
+            stroke: '#333'
+          }
+        }
+      })
       chart.scale({
         month: {
           alias: '月份' // 为属性定义别名
@@ -101,6 +131,7 @@ module.exports = Magix.View.extend({
       })
       chart.interval().position('month*value').color('value', '#36c361')
       chart.render()
+      me.chartArray.push(chart)
     })
   }
 })

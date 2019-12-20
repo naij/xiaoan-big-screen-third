@@ -1,7 +1,10 @@
 <div class="block-switch-loading"></div>
-<div class="sidenav" mx-view="app/views/common/sidenav"></div>
-<div class="content">
-  <div class="page-header clearfix">
+<div class="layout-header">
+  <div class="title" mx-click="goToBigScreen()"></div>
+  <div class="sitenav" mx-view="app/views/common/sitenav"></div>
+</div>
+<div class="layout-content">
+  <!-- <div class="page-header clearfix">
     <div class="title-bar">
       <h2 class="title">{{title}}</h2>
     </div>
@@ -9,10 +12,8 @@
       <span class="iconfont iconyonghuming"></span>
       <span>{{username}}</span>
     </div>
-  </div>
+  </div> -->
   <div class="page-body">
-    <div mx-view="{{mainView}}">
-      <!-- <div class="block-loading"></div> -->
-    </div>
+    <div mx-view="{{mainView}}"></div>
   </div>
 </div>

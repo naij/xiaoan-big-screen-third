@@ -7,6 +7,7 @@ module.exports = Magix.View.extend({
     this.observe(null, true)
   },
   render: function() {
+    console.log('================default=================')
     var me = this
     var loc = Router.parse()
     var path = loc.path
@@ -16,7 +17,6 @@ module.exports = Magix.View.extend({
     }
 
     me.data = {
-      username: 'admin',
       mainView: 'app/views/pages' + path
     }
     me.setView()
@@ -25,5 +25,8 @@ module.exports = Magix.View.extend({
   setPageHead(title) {
     this.data.title = title
     this.setView()
+  },
+  'goToBigScreen<click>': function() {
+    this.to('/bigscreen/index')
   }
 })
