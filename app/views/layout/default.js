@@ -7,7 +7,6 @@ module.exports = Magix.View.extend({
     this.observe(null, true)
   },
   render: function() {
-    console.log('================default=================')
     var me = this
     var loc = Router.parse()
     var path = loc.path
