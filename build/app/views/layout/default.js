@@ -8,7 +8,7 @@ var Magix = require('magix')
 var Router = Magix.Router
 
 module.exports = Magix.View.extend({
-  tmpl: "<div mx-view=\"{{mainView}}\"></div>",
+  tmpl: "<div class=\"block-switch-loading\"></div><div class=\"layout-header\"><div class=\"title\" mx-click=\"goToBigScreen()\"></div><div class=\"sitenav\" mx-view=\"app/views/common/sitenav\"></div></div><div class=\"layout-content\"><div class=\"page-body\"><div mx-view=\"{{mainView}}\"></div></div></div>",
   ctor: function() {
     this.observe(null, true)
   },
@@ -26,6 +26,13 @@ module.exports = Magix.View.extend({
     }
     me.setView()
     me.animateLoading()
+  },
+  setPageHead(title) {
+    this.data.title = title
+    this.setView()
+  },
+  'goToBigScreen<click>': function() {
+    this.to('/bigscreen/index')
   }
 })
 });

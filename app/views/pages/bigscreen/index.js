@@ -3,6 +3,7 @@ var $ = require('jquery')
 var moment = require('moment')
 var util = require('app/util/index')
 var Dialog = require('app/mixins/dialog')
+// var mapdata = require('./mapdata')
 
 module.exports = Magix.View.extend({
   tmpl: '@index.html',
@@ -98,7 +99,7 @@ module.exports = Magix.View.extend({
           position: [gis.lng, gis.lat]
         })
         marker.on('click', function(e) {
-          me.showInfoDialog({
+          me.showAlarmInfoDialog({
             lwdwid: obj.lwdwid,
             cym: results[0].cym,
             jzlb: results[0].dwcsx ? results[0].dwcsx : results[0].dwzsx,
@@ -134,7 +135,6 @@ module.exports = Magix.View.extend({
       mapStyle: 'amap://styles/dark'
     })
 
-    /*
     AMapUI.loadUI(['misc/PointSimplifier'], function(PointSimplifier) {
       //创建组件实例
       var pointSimplifierIns = new PointSimplifier({
@@ -144,7 +144,7 @@ module.exports = Magix.View.extend({
           return dataItem.position
         },
         getHoverTitle: function(dataItem, idx) {
-          return dataItem.title
+          return dataItem.cym
         },
         renderOptions: {
           //点的样式
@@ -168,28 +168,61 @@ module.exports = Magix.View.extend({
         }
       })
 
-      var data = []
-      mapdata.forEach(function(item, index) {
-        var gis = util.BdmapEncryptToMapabc(item[2], item[1])
-  
-        data.push({
-          position: [gis.lng, gis.lat],
-          title: item[0]
-        })
+      pointSimplifierIns.on('pointClick', function(e, record) {
+        if (me.data.switcher.type == 1) {
+          me.showBaseInfoDialog({
+            dwid: record.data.dwid,
+            cym: record.data.cym,
+            jzlb: record.data.jzlb,
+            dwdz: record.data.dwdz
+          })
+        }
       })
-  
-      //设置数据源，data需要是一个数组
-      pointSimplifierIns.setData(data)
 
-      me.pointSimplifierIns = pointSimplifierIns
+      me.request().all([{
+        name: 'getLwdwxxListForTp',
+        params: {
+          key: 'XAlwjc119',
+          startPage: 1,
+          pageSize: 500
+        }
+      }], function(e, ResModel) {
+        var mapdata = ResModel.get('data').results
+        var data = []
+        mapdata.forEach(function(item, index) {
+          if (item.gis_y && item.gis_x) {
+            var gis = util.BdmapEncryptToMapabc(item.gis_y, item.gis_x)
+    
+            data.push({
+              position: [gis.lng, gis.lat],
+              cym: item.cym,
+              dwid: item.dwid,
+              jzlb: item.dwcsx ? item.dwcsx : item.dwzsx,
+              dwdz: item.dwdz
+            })
+          }
+        })
+    
+        //设置数据源，data需要是一个数组
+        pointSimplifierIns.setData(data)
+
+        me.pointSimplifierIns = pointSimplifierIns
+      })
     })
-    */
+
     me.mapInstance = mapInstance
   },
-  showInfoDialog: function(data) {
-    this.mxDialog('app/views/pages/bigscreen/info', {
+  showAlarmInfoDialog: function(data) {
+    this.mxDialog('app/views/pages/bigscreen/alarm_info', {
       width: 1000,
       height: 600,
+      data: data
+    })
+  },
+  showBaseInfoDialog: function(data) {
+    this.mxDialog('app/views/pages/bigscreen/base_info', {
+      width: 600,
+      height: 400,
       data: data
     })
   },

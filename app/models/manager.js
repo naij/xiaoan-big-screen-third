@@ -78,6 +78,12 @@ Service.add([
     name: 'getDqsbGlBjsForTp',
     url: '/tp/getDqsbGlBjsForTp',
     method: 'POST'
+  },
+  // 根据联网单位ID获取传输装置数、电气监测设备数、视频摄像头数
+  {
+    name: 'getCszzcDqjcsbcSpsxtcForTp',
+    url: '/tp/getCszzcDqjcsbcSpsxtcForTp',
+    method: 'POST'
   }
 ])
 

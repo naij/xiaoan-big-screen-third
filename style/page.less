@@ -190,7 +190,8 @@
       flex-grow: 4;
       margin: 0 10px;
       display: flex;
-      justify-content: space-between;
+      // justify-content: space-between;
+      justify-content: flex-end;
       align-items: flex-start;
     }
     .total-count {
@@ -700,6 +701,51 @@
       }
       .line-3 .circle {
         left: -4px;
+      }
+    }
+  }
+
+  .base-info {
+    position: relative;
+
+    .inner {
+      width: auto;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+  
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .building-name {
+          max-width: 320px;
+          padding-right: 10px;
+        }
+        .building-type .value {
+          width: 200px;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
+        }
+      }
+      .row-device {
+        justify-content: flex-start;
+
+        .iconfont {
+          margin-right: 15px;
+          font-size: 16px;
+          color: #999;
+        }
+        .iconshebei.active {
+          color: #2aa515;
+        }
+        .icondian.active {
+          color: #438cff;
+        }
+        .iconshexiangtou.active {
+          color: #ff8584;
+        }
       }
     }
   }

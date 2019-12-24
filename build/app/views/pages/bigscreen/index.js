@@ -2,20 +2,22 @@
     generate by magix-combine: https://github.com/thx/magix-combine
     author: xinglie.lkf@alibaba-inc.com; kooboy_li@163.com
  */
-define('app/views/pages/index',["magix","jquery","app/util/index","app/views/pages/mapdata","app/mixins/dialog"],function(require,exports,module){
-/*Magix,$,util,mapdata,Dialog*/
+define('app/views/pages/bigscreen/index',["magix","jquery","moment","app/util/index","app/mixins/dialog"],function(require,exports,module){
+/*Magix,$,moment,util,Dialog*/
 var Magix = require('magix')
 var $ = require('jquery')
+var moment = require('moment')
 var util = require('app/util/index')
-var mapdata = require('app/views/pages/mapdata')
 var Dialog = require('app/mixins/dialog')
+// var mapdata = require('./mapdata')
 
 module.exports = Magix.View.extend({
-  tmpl: "<div class=\"map-container\" id=\"mapContainer\"></div><div class=\"header\"><div class=\"header-bg\"></div><div class=\"title\"></div></div><div class=\"main\"><div class=\"top-wrapper\"><div class=\"top-left-wrapper\"><div class=\"grid weather\"><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div><div class=\"content\"><div class=\"wea-img\"><span class=\"iconfont {{weather.weaImg}}\"></span></div><div class=\"row\"><div class=\"tem\"><span>{{weather.tem}}</span><span class=\"symbol\">℃</span></div><div class=\"wea\">{{weather.wea}}</div></div><div class=\"row location\">{{cityName}}</div><div class=\"row\"><div class=\"win\">{{weather.win}}</div><div class=\"humidity\">空气湿度 {{weather.humidity}}</div></div></div></div><div class=\"grid networking-total\"><h3 class=\"headline\">联网情况</h3><div class=\"content\"><div class=\"sum\"><h4>总联网数量</h4><div class=\"number\"><div class=\"fs-16\">{{lwdwzs}}</div></div></div><div class=\"detail\"><div class=\"group-field\"><span class=\"group-item mr5\"><span class=\"color-f89a0d\">离线 {{lxs}}</span></span><span class=\"group-item\"><span class=\"color-ff6600\">在线 {{zxs}}</span></span></div><div class=\"chart-container\" id=\"networkingTotalChart\" style=\"width:120px;height:120px;\"></div></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div><div class=\"top-middle-wrapper\"><div class=\"total-count\"><div class=\"label\">各地区总检测点数：</div><div class=\"value\">{{jcdzs}}</div></div><div class=\"pointer-switcher\"><div class=\"switch-btn\" t-class:selected=\"switcher.type\" mx-click=\"switchPoiner()\"><span t-if=\"switcher.type==1\">隐藏所有单位</span><span t-if=\"switcher.type==0\">显示所有单位</span></div></div></div><div class=\"top-right-wrapper\"><div class=\"grid misinformation-rate\"><h3 class=\"headline\">误报率</h3><div class=\"content\"><div id=\"falseAlarmChart\" style=\"width:280px;height:200px;\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"grid failure-rate\"><h3 class=\"headline\">故障率</h3><div class=\"content\"><div id=\"breakdownChart\" style=\"width:280px;height:200px;\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div></div><div class=\"bottom-wrapper\"><div class=\"grid left\"><h3 class=\"headline\">真实火警数</h3><div class=\"content\"><div id=\"realFireAlarmChart\" class=\"overflow-hidden\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"grid middle\"><h3 class=\"headline\">消防用水监测</h3><div class=\"content\"><div class=\"item-wrapper\"><div class=\"icon icon-water-level\"></div><div class=\"attr\"><div class=\"value\">491</div><div class=\"title\">水位总检测点数</div></div></div><div class=\"item-wrapper\"><div class=\"icon icon-pressure\"></div><div class=\"attr\"><div class=\"value\">645</div><div class=\"title\">水压总检测点数</div></div></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"grid right\"><h3 class=\"headline\">用电安全监测</h3><div class=\"content\"><div class=\"item-wrapper\"><div class=\"icon icon-electricity\"></div><div class=\"attr\"><div class=\"value\">1897</div><div class=\"title\">电气总检测点数</div></div></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div></div>",
+  tmpl: "<div class=\"page-bigscreen\"><div class=\"map-container\" id=\"mapContainer\"></div><div class=\"header\"><div class=\"header-bg\"></div><div class=\"title\"></div></div><div class=\"main\"><div class=\"top-wrapper\"><div class=\"top-left-wrapper\"><div class=\"module weather\"><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div><div class=\"content-wrapper\"><div class=\"wea-img\"><span class=\"iconfont {{weather.weaImg}}\"></span></div><div class=\"row\"><div class=\"tem\"><span>{{weather.tem}}</span><span class=\"symbol\">℃</span></div><div class=\"wea\">{{weather.wea}}</div></div><div class=\"row location\">{{cityName}}</div><div class=\"row\"><div class=\"win\">{{weather.win}}</div><div class=\"humidity\">空气湿度 {{weather.humidity}}</div></div></div></div><div class=\"module networking-total\"><h3 class=\"headline\">用传联网情况</h3><div class=\"content-wrapper\"><div class=\"chart-wrapper\" id=\"ycNetworkingTotalChart\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div><div class=\"top-middle-wrapper\"><div class=\"pointer-switcher\"><div class=\"switch-btn\" t-class:selected=\"switcher.type\" mx-click=\"switchPoiner()\"><span t-if=\"switcher.type==1\">隐藏所有单位</span><span t-if=\"switcher.type==0\">显示所有单位</span></div></div></div><div class=\"top-right-wrapper\"><div class=\"module misinformation-rate\"><h3 class=\"headline\">电气联网情况</h3><div class=\"content-wrapper\"><div class=\"chart-wrapper\" id=\"dianNetworkingTotalChart\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"module failure-rate\"><h3 class=\"headline\">电气七天报警分析</h3><div class=\"content-wrapper\"><div class=\"chart-wrapper\" id=\"dianAlarmCountChart\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div></div><div class=\"bottom-wrapper\"><div class=\"module\"><h3 class=\"headline\">用传误报率</h3><div class=\"content-wrapper\"><div class=\"chart-wrapper\" id=\"falseAlarmChart\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"module\"><h3 class=\"headline\">用传故障率</h3><div class=\"content-wrapper\"><div class=\"chart-wrapper\" id=\"breakdownChart\"></div></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"module\"><h3 class=\"headline\">用传误报单位排序</h3><div class=\"content-wrapper\"><table class=\"table\"><thead><tr><th>联网单位名称</th><th width=\"100\">故障率</th></tr></thead><tbody>{{#for(item in breakdownUnitList)}}<tr><td>{{item.cym}}</td><td>{{item.gzl}}%</td></tr>{{/for}}</tbody></table></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div><div class=\"module\"><h3 class=\"headline\">用传故障单位排序</h3><div class=\"content-wrapper\"><table class=\"table\"><thead><tr><th>联网单位名称</th><th width=\"100\">误报率</th></tr></thead><tbody>{{#for(item in falseAlarmUnitList)}}<tr><td>{{item.cym}}</td><td>{{item.wbl}}%</td></tr>{{/for}}</tbody></table></div><div class=\"bevel-group\"><div class=\"bevel bevel-top-left\"></div><div class=\"bevel bevel-top-right\"></div><div class=\"bevel bevel-bottom-left\"></div><div class=\"bevel bevel-bottom-right\"></div></div></div></div></div></div>",
   mixins: [Dialog],
   render: function() {
     var me = this
 
+    me.chartArray = []
     me.data = {
       switcher: {
         type: 1
@@ -26,33 +28,32 @@ module.exports = Magix.View.extend({
       var headerHeight = $('.header').height()
       var mainHeight = windowHeight - headerHeight
       $('.main').height(mainHeight)
-      // 设置图表显示宽高
-      var $falseAlarmChart = $('#falseAlarmChart')
-      var $breakdownChart = $('#breakdownChart')
-      var $realFireAlarmChart = $('#realFireAlarmChart')
-      $falseAlarmChart.height($falseAlarmChart.parent().height())
-      $breakdownChart.height($breakdownChart.parent().height())
-      $realFireAlarmChart.height($realFireAlarmChart.parent().height())
-      $falseAlarmChart.width($falseAlarmChart.parent().width())
-      $breakdownChart.width($breakdownChart.parent().width())
-      $realFireAlarmChart.width($realFireAlarmChart.parent().width())
 
       me.renderMap()
       me.connect()
       
       me.renderWeather()
-      me.renderNetworkingTotalChart()
+      me.renderYCNetworkingTotalChart()
       me.renderFalseAlarmChart()
       me.renderBreakdownChart()
-      me.renderRealFireAlarmChart()
+      me.renderDianAlarmCountChart()
+      me.renderDianNetworkingTotalChart()
+      me.renderBreakdownUnit()
+      me.renderFalseAlarmUnit()
+    })
+
+    me.on('destroy', function() {
+      me.chartArray.forEach(function(v) {
+        v.destroy()
+      })
     })
   },
   connect: function () {
     var me = this
-    var connection = $.hubConnection('http://183.129.224.22:8089')
     //如果前后端为同一个端口，可不填参数。如果前后端分离，这里参数为服务器端的URL
-    var chatHubProxy = connection.createHubProxy('ServiceHub')
-    // ServiceHub为后端定义，使用驼峰式命名，后端首字母必须大写
+    var connection = $.hubConnection('http://183.129.224.22:8090')
+    // DispatchHub为后端定义，使用驼峰式命名，后端首字母必须大写
+    var chatHubProxy = connection.createHubProxy('DispatchHub')
     // ReveiceAlarm 为后端ServiceHub方法
     chatHubProxy.on('ReveiceAlarm', function(res, message) {
       var alarmList = res
@@ -66,7 +67,8 @@ module.exports = Magix.View.extend({
     connection.start()
       .done(function(){ 
         console.log('Now connected, connection ID=' + connection.id)
-        chatHubProxy.invoke('Register')
+        // chatHubProxy.invoke('Register')
+        chatHubProxy.invoke('Connect', {'name': 'hzgs', 'password': 'hzgs119'})
       })
       .fail(function(){ console.log('Could not connect') })
   },
@@ -103,7 +105,7 @@ module.exports = Magix.View.extend({
           position: [gis.lng, gis.lat]
         })
         marker.on('click', function(e) {
-          me.showInfoDialog({
+          me.showAlarmInfoDialog({
             lwdwid: obj.lwdwid,
             cym: results[0].cym,
             jzlb: results[0].dwcsx ? results[0].dwcsx : results[0].dwzsx,
@@ -148,7 +150,7 @@ module.exports = Magix.View.extend({
           return dataItem.position
         },
         getHoverTitle: function(dataItem, idx) {
-          return dataItem.title
+          return dataItem.cym
         },
         renderOptions: {
           //点的样式
@@ -172,28 +174,61 @@ module.exports = Magix.View.extend({
         }
       })
 
-      var data = []
-      mapdata.forEach(function(item, index) {
-        var gis = util.BdmapEncryptToMapabc(item[2], item[1])
-  
-        data.push({
-          position: [gis.lng, gis.lat],
-          title: item[0]
-        })
+      pointSimplifierIns.on('pointClick', function(e, record) {
+        if (me.data.switcher.type == 1) {
+          me.showBaseInfoDialog({
+            dwid: record.data.dwid,
+            cym: record.data.cym,
+            jzlb: record.data.jzlb,
+            dwdz: record.data.dwdz
+          })
+        }
       })
-  
-      //设置数据源，data需要是一个数组
-      pointSimplifierIns.setData(data)
 
-      me.pointSimplifierIns = pointSimplifierIns
+      me.request().all([{
+        name: 'getLwdwxxListForTp',
+        params: {
+          key: 'XAlwjc119',
+          startPage: 1,
+          pageSize: 500
+        }
+      }], function(e, ResModel) {
+        var mapdata = ResModel.get('data').results
+        var data = []
+        mapdata.forEach(function(item, index) {
+          if (item.gis_y && item.gis_x) {
+            var gis = util.BdmapEncryptToMapabc(item.gis_y, item.gis_x)
+    
+            data.push({
+              position: [gis.lng, gis.lat],
+              cym: item.cym,
+              dwid: item.dwid,
+              jzlb: item.dwcsx ? item.dwcsx : item.dwzsx,
+              dwdz: item.dwdz
+            })
+          }
+        })
+    
+        //设置数据源，data需要是一个数组
+        pointSimplifierIns.setData(data)
+
+        me.pointSimplifierIns = pointSimplifierIns
+      })
     })
 
     me.mapInstance = mapInstance
   },
-  showInfoDialog: function(data) {
-    this.mxDialog('app/views/pages/info', {
+  showAlarmInfoDialog: function(data) {
+    this.mxDialog('app/views/pages/bigscreen/alarm_info', {
       width: 1000,
       height: 600,
+      data: data
+    })
+  },
+  showBaseInfoDialog: function(data) {
+    this.mxDialog('app/views/pages/bigscreen/base_info', {
+      width: 600,
+      height: 400,
       data: data
     })
   },
@@ -324,46 +359,54 @@ module.exports = Magix.View.extend({
         me.setView()
       })
     })
-    
   },
-  // 联网总数
-  renderNetworkingTotalChart: function() {
+  // 用传联网总数
+  renderYCNetworkingTotalChart: function() {
     var me = this
     me.request().all([{
-      name: 'getLwdwAndJcdCountForTp',
+      name: 'getZjXjjgForTp',
       params: {
         key: 'XAlwjc119'
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
-      var lwdwzs = 2168
-      
-      me.data.lwdwzs = lwdwzs.toLocaleString('en-US')
-      me.data.jcdzs = res.jcdzs.toLocaleString('en-US')
-      me.data.lxs = 33
-      me.data.zxs = 2135
-      me.setView()
 
       var data = [{
         item: '离线',
-        count: 33
+        count: res.lxs
       }, {
         item: '在线',
-        count: 2135
+        count: res.zxs
       }]
       var chart = new G2.Chart({
-        container: 'networkingTotalChart',
+        container: 'ycNetworkingTotalChart',
         forceFit: true,
-        height: 120,
+        height: $('#ycNetworkingTotalChart').parent().height(),
         data: data,
-        padding: 14
+        padding: [20, 20, 50, 20]
       })
-      chart.coord('theta')
+      chart.coord('theta', {
+        radius: 0.6
+      })
       chart.tooltip({
         showTitle: false
       })
-      chart.intervalStack().position('count').color('item', ['#f89a0d', '#ff6600'])
+      chart.intervalStack()
+        .position('count')
+        .color('item', ['#f89a0d', '#ff6600'])
+        .label('count', {
+          formatter: (val, item) => {
+            return item.point.item + ': ' + val;
+          }
+        })
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
+        })
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   // 误报率
@@ -391,7 +434,7 @@ module.exports = Magix.View.extend({
         forceFit: true,
         height: $('#falseAlarmChart').parent().height(),
         data: data,
-        padding: [20, 30, 70, 40]
+        padding: [20, 30, 40, 40]
       })
       chart.axis('month', {
         label: {
@@ -423,9 +466,10 @@ module.exports = Magix.View.extend({
           alias: '误报率' // 为属性定义别名
         }
       })
-      chart.area().position('month*value').color('value', ['#9c4003']).tooltip(false)
-      chart.line().position('month*value').color('value', ['#c25004'])
+      chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
+      chart.line().position('month*value').color('value', '#c25004')
       chart.render()
+      me.chartArray.push(chart)
     })
   },
   // 故障率
@@ -453,7 +497,7 @@ module.exports = Magix.View.extend({
         forceFit: true,
         height: $('#breakdownChart').parent().height(),
         data: data,
-        padding: [20, 30, 70, 40]
+        padding: [20, 30, 40, 40]
       })
       chart.axis('month', {
         label: {
@@ -485,38 +529,82 @@ module.exports = Magix.View.extend({
           alias: '故障率' // 为属性定义别名
         }
       })
-      chart.area().position('month*value').color('value', ['#9c4003']).tooltip(false)
-      chart.line().position('month*value').color('value', ['#c25004'])
+      chart.area().position('month*value').color('value', '#c25004').opacity(0.5).tooltip(false)
+      chart.line().position('month*value').color('value', '#c25004')
       chart.render()
+      me.chartArray.push(chart)
     })    
   },
-  // 真实火警
-  renderRealFireAlarmChart: function() {
+  // 故障单位排序
+  renderBreakdownUnit: function () {
     var me = this
     me.request().all([{
-      name: 'get12MonthZshjForTp',
+      name: 'getMyGzlzgdwForTp',
       params: {
-        key: 'XAlwjc119'
+        key: 'XAlwjc119',
+        params: {
+          n: 5,
+          kssj: moment().subtract(1, 'months').format("YYYY-MM-DD")
+        }
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+      me.data.breakdownUnitList = res
+      me.setView()
+    })
+  },
+  // 误报单位排序
+  renderFalseAlarmUnit: function () {
+    var me = this
+    me.request().all([{
+      name: 'getMyWblzgdwForTp',
+      params: {
+        key: 'XAlwjc119',
+        params: {
+          n: 5,
+          kssj: moment().subtract(1, 'months').format("YYYY-MM-DD")
+        }
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+      me.data.falseAlarmUnitList = res
+      me.setView()
+    })
+  },
+  // 电气七天报警分析
+  renderDianAlarmCountChart: function() {
+    var me = this
+    var fieldMap = [
+      {field:'gzs', label: '过载数'},
+      {field:'yws', label: '烟雾数'},
+      {field:'lds2', label: '漏电数'},
+      {field:'lxs', label: '离线数'},
+      {field:'lds', label: '联动数'}
+    ]
+    me.request().all([{
+      name: 'getDqsbGlBjsForTp',
+      params: {
+        key: 'XAlwjc119',
+        kssj: moment().subtract(7, 'days').format("YYYY-MM-DD"),
+        jssj: moment().subtract(1, 'days').format("YYYY-MM-DD")
       }
     }], function(e, ResModel) {
       var res = ResModel.get('data')
       var data = []
-      res.forEach(function(v, i) {
-        if (i > 2) {
-          data.push({
-            month: v.tjrq.replace('年','-').replace('月',''),
-            value: v.zshjs
-          })
-        }
+      fieldMap.forEach(function(v, i) {
+        data.push({
+          field: v.label,
+          value: res[v.field]
+        })
       })
       var chart = new G2.Chart({
-        container: 'realFireAlarmChart',
+        container: 'dianAlarmCountChart',
         forceFit: true,
-        height: $('#realFireAlarmChart').parent().height(),
+        height: $('#dianAlarmCountChart').parent().height(),
         data: data,
-        padding: [10, 20, 60, 50]
+        padding: [10, 20, 40, 50]
       })
-      chart.axis('month', {
+      chart.axis('field', {
         label: {
           textStyle: {
             fill: '#ccc', // 文本的颜色
@@ -539,14 +627,14 @@ module.exports = Magix.View.extend({
         }
       })
       chart.scale({
-        month: {
-          alias: '月份' // 为属性定义别名
+        field: {
+          alias: '字段' // 为属性定义别名
         },
         value: {
-          alias: '火警数' // 为属性定义别名
+          alias: '数值' // 为属性定义别名
         }
       })
-      chart.interval().position('month*value').color('value', function(value) {
+      chart.interval().position('field*value').color('value', function(value) {
         if (value > 100) {
           return '#ff6600'
         } else if (value < 50) {
@@ -554,6 +642,55 @@ module.exports = Magix.View.extend({
         }
       })
       chart.render()
+      me.chartArray.push(chart)
+    })
+  },
+  renderDianNetworkingTotalChart: function () {
+    var me = this
+    me.request().all([{
+      name: 'getDqsbzsZcsBjsForTp',
+      params: {
+        key: 'XAlwjc119'
+      }
+    }], function(e, ResModel) {
+      var res = ResModel.get('data')
+
+      var data = [{
+        item: '报警数',
+        count: res.bjs
+      }, {
+        item: '正常数',
+        count: res.zcs
+      }]
+      var chart = new G2.Chart({
+        container: 'dianNetworkingTotalChart',
+        forceFit: true,
+        height: $('#dianNetworkingTotalChart').parent().height(),
+        data: data,
+        padding: [20, 20, 50, 20]
+      })
+      chart.coord('theta', {
+        radius: 0.6
+      })
+      chart.tooltip({
+        showTitle: false
+      })
+      chart.intervalStack()
+        .position('count')
+        .color('item', ['#ff6600', '#f89a0d'])
+        .label('count', {
+          formatter: (val, item) => {
+            return item.point.item + ': ' + val;
+          }
+        })
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
+        })
+      chart.render()
+      me.chartArray.push(chart)
     })
   },
   'switchPoiner<click>': function(e) {
