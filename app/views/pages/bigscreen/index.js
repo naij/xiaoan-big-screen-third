@@ -176,6 +176,7 @@ module.exports = Magix.View.extend({
             jzlb: record.data.jzlb,
             dwdz: record.data.dwdz
           })
+          me.mapInstance.setCenter(record.data.position)
         }
       })
 
@@ -222,7 +223,7 @@ module.exports = Magix.View.extend({
   showBaseInfoDialog: function(data) {
     this.mxDialog('app/views/pages/bigscreen/base_info', {
       width: 600,
-      height: 400,
+      height: 480,
       data: data
     })
   },
