@@ -139,6 +139,7 @@ module.exports = Magix.View.extend({
       //创建组件实例
       var pointSimplifierIns = new PointSimplifier({
         map: mapInstance,
+        autoSetFitView: false,
         getPosition: function(dataItem) {
           //返回数据项的经纬度，AMap.LngLat实例或者经纬度数组
           return dataItem.position
@@ -207,6 +208,7 @@ module.exports = Magix.View.extend({
         //设置数据源，data需要是一个数组
         pointSimplifierIns.setData(data)
 
+        me.pointSimplifierInsData = data
         me.pointSimplifierIns = pointSimplifierIns
       })
     })
@@ -699,6 +701,25 @@ module.exports = Magix.View.extend({
       this.pointSimplifierIns.show()
     } else {
       this.pointSimplifierIns.hide()
+    }
+  },
+  'search<keydown>': function(e) {
+    if (e.keyCode == '13') {
+      var value = $(e.eventTarget).val()
+      var pointSimplifierInsData = this.pointSimplifierInsData
+      var pointSimplifierIns = this.pointSimplifierIns
+      if (value) {
+        var data = []
+        pointSimplifierInsData.forEach(function(v) {
+          if (v.cym.indexOf(value) != -1) {
+            data.push(v)
+          }
+        })
+
+        pointSimplifierIns.setData(data)
+      } else {
+        pointSimplifierIns.setData(pointSimplifierInsData)
+      }
     }
   }
 })
