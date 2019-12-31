@@ -5,7 +5,7 @@
           <div class="row">
             <div class="item building-name">
               <div class="label">建筑名称：</div>
-              <div class="value">{{cym}}</div>
+              <div class="value"><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{dwid}}" class="color-c" target="_blank">{{cym}}</a></div>
             </div>
             <div class="item building-type">
               <div class="label">建筑类别：</div>
@@ -19,7 +19,13 @@
             </div>
           </div>
           <div class="row row-device">
-            <span class="iconfont iconshebei" t-class:active="cszzC"></span>
+            {{#if(cszzC)}}
+            <a class="iconfont iconshebei active" href="/system/zhcx/dwxx/getLwdwBjxxtj.do?lwdwDTO.dwid={{dwid}}" target="_blank"></a>
+            {{/if}}
+            {{#if(!cszzC)}}
+            <span class="iconfont iconshebei"></span>
+            {{/if}}
+            
             <span class="iconfont icondian" t-class:active="dqjcsbC"></span>
             <span class="iconfont iconshexiangtou" t-class:active="spsxtC"></span>
           </div>

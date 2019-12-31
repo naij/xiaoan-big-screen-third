@@ -8,7 +8,7 @@ var Magix = require('magix')
 var $ = require('jquery')
 var Router = Magix.Router
 var menuList = [{
-  name: '用传数据',
+  name: '用户传输装置数据',
   icon: 'iconshebei',
   path: '/report/yongchuan'
 }, {

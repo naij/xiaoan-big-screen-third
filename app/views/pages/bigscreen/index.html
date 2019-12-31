@@ -35,7 +35,10 @@
           </div>
         </div>
         <div class="module networking-total">
-          <h3 class="headline">用户传输装置联网情况</h3>
+          <div class="headline">
+            <div class="title">用户传输装置联网情况</div>
+            <a href="/report/yongchuan" class="more">更多</a>
+          </div>
           <div class="content-wrapper">
             <div class="chart-wrapper" id='ycNetworkingTotalChart'></div>
           </div>
@@ -63,7 +66,10 @@
       </div>
       <div class="top-right-wrapper">
         <div class="module misinformation-rate">
-          <h3 class="headline">电气联网情况</h3>
+          <div class="headline">
+            <div class="title">电气联网情况</div>
+            <a href="/report/dian" class="more">更多</a>
+          </div>
           <div class="content-wrapper">
             <div class="chart-wrapper" id='dianNetworkingTotalChart'></div>
           </div>
@@ -75,7 +81,10 @@
           </div>
         </div>
         <div class="module failure-rate">
-          <h3 class="headline">电气七天报警分析</h3>
+          <div class="headline">
+            <div class="title">电气七天报警分析</div>
+            <a href="/report/dian" class="more">更多</a>
+          </div>
           <div class="content-wrapper">
             <div class="chart-wrapper" id='dianAlarmCountChart'></div>
           </div>
@@ -90,7 +99,10 @@
     </div>
     <div class="bottom-wrapper">
       <div class="module">
-        <h3 class="headline">误报率</h3>
+        <div class="headline">
+          <div class="title">误报率</div>
+          <a href="/report/yongchuan" class="more">更多</a>
+        </div>
         <div class="content-wrapper">
           <div class="chart-wrapper" id="falseAlarmChart"></div>
         </div>
@@ -102,7 +114,10 @@
         </div>
       </div>
       <div class="module">
-        <h3 class="headline">故障率</h3>
+        <div class="headline">
+          <div class="title">故障率</div>
+          <a href="/report/yongchuan" class="more">更多</a>
+        </div>
         <div class="content-wrapper">
           <div class="chart-wrapper" id="breakdownChart"></div>
         </div>
@@ -114,7 +129,10 @@
         </div>
       </div>
       <div class="module">
-        <h3 class="headline">误报单位排序</h3>
+        <div class="headline">
+          <div class="title">误报单位排序</div>
+          <a href="/report/yongchuan" class="more">更多</a>
+        </div>
         <div class="content-wrapper">
           <table class="table">
             <thead>
@@ -126,7 +144,7 @@
             <tbody>
               {{#for(item in breakdownUnitList)}}
               <tr>
-                <td>{{item.cym}}</td>
+                <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" class="color-l" target="_blank">{{item.cym}}</a></td>
                 <td>{{item.gzl}}%</td>
               </tr>
               {{/for}}
@@ -141,7 +159,10 @@
         </div>
       </div>
       <div class="module">
-        <h3 class="headline">故障单位排序</h3>
+        <div class="headline">
+          <div class="title">故障单位排序</div>
+          <a href="/report/yongchuan" class="more">更多</a>
+        </div>
         <div class="content-wrapper">
           <table class="table">
             <thead>
@@ -153,7 +174,7 @@
             <tbody>
               {{#for(item in falseAlarmUnitList)}}
               <tr>
-                <td>{{item.cym}}</td>
+                <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" class="color-l" target="_blank">{{item.cym}}</a></td>
                 <td>{{item.wbl}}%</td>
               </tr>
               {{/for}}

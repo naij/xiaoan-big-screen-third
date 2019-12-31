@@ -117,14 +117,21 @@
       clip-path: polygon( 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px );
   
       .headline {
-        color: #ccc;
-        text-align: left;
-        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
         background-color: rgba(0, 0, 0, 0.3);
         background-image: url(../img/headline_bg_2x.png);
         background-position: center -1px;
         background-repeat: no-repeat;
         padding: 10px 10px;
+
+        .title {
+          color: #ccc;
+          font-size: 14px;
+        }
+        .more {
+          color: #ccc;
+        }
       }
       .content-wrapper {
         display: flex;
