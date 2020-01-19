@@ -66,9 +66,10 @@ module.exports = Magix.View.extend({
     })
     connection.start()
       .done(function(){ 
-        console.log('Now connected, connection ID=' + connection.id)
-        // chatHubProxy.invoke('Register')
-        chatHubProxy.invoke('Connect', {'name': 'hzgs', 'password': 'hzgs119'})
+        var connect = chatHubProxy.invoke('Connect', 'hzgs', 'hzgs119')
+        connect.done(function(res) {
+          console.log(res)
+        })
       })
       .fail(function(){ console.log('Could not connect') })
   },
@@ -203,6 +204,7 @@ module.exports = Magix.View.extend({
     
             data.push({
               position: [gis.lng, gis.lat],
+              dwmc: item.dwmc,
               cym: item.cym,
               dwid: item.dwid,
               jzlb: item.dwcsx ? item.dwcsx : item.dwzsx,
@@ -717,7 +719,7 @@ module.exports = Magix.View.extend({
       if (value) {
         var data = []
         pointSimplifierInsData.forEach(function(v) {
-          if (v.cym.indexOf(value) != -1) {
+          if (v.cym.indexOf(value) != -1 || v.dwmc.indexOf(value) != -1) {
             data.push(v)
           }
         })

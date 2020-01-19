@@ -34,3 +34,10 @@ mat.task('default', ['less', 'combine', 'pushState'], function () {
       proxyPass: '183.129.224.22:7780'
     }))
 })
+
+mat.task('build', ['pushState'], function () {
+  mat.url([/\/tp\//])
+    .use(proxy({
+      proxyPass: '183.129.224.22:7780'
+    }))
+})
