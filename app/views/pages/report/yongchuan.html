@@ -37,7 +37,7 @@
           <tbody>
             {{#for(item in breakdownUnitList)}}
             <tr>
-              <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" class="color-l" target="_blank">{{item.cym}}</a></td>
+              <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" vclick-ignore="true" class="color-l" target="_blank">{{item.cym}}</a></td>
               <td>{{item.gzl}}%</td>
             </tr>
             {{/for}}
@@ -90,7 +90,7 @@
           <tbody>
             {{#for(item in falseAlarmUnitList)}}
             <tr>
-              <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" class="color-l" target="_blank">{{item.cym}}</a></td>
+              <td><a href="/system/jcxx/dwxx/getLwdwDetail.do?lwdw.dwid={{item.dwid}}" vclick-ignore="true" class="color-l" target="_blank">{{item.cym}}</a></td>
               <td>{{item.wbl}}%</td>
             </tr>
             {{/for}}

@@ -8,7 +8,7 @@ var Magix = require('magix')
 var Router = Magix.Router
 
 module.exports = Magix.View.extend({
-  tmpl: "<div class=\"block-switch-loading\"></div><div class=\"layout-header\"><div class=\"title\" mx-click=\"goToBigScreen()\"></div><div class=\"sitenav\" mx-view=\"app/views/common/sitenav\"></div></div><div class=\"layout-content\"><div class=\"page-body\"><div mx-view=\"{{mainView}}\"></div></div></div>",
+  tmpl: "<div class=\"block-switch-loading\"></div><div class=\"layout-header\"><div class=\"title\" mx-click=\"goToBigScreen()\"></div><div class=\"sitenav\" mx-view=\"app/views/common/sitenav\"></div><div class=\"bp-entrance\"><a href=\"/getSy\" vclick-ignore=\"true\" target=\"_blank\"><span class=\"iconfont iconlianjie\"></span><span>综合查询子系统</span></a></div></div><div class=\"layout-content\"><div class=\"page-body\"><div mx-view=\"{{mainView}}\"></div></div></div>",
   ctor: function() {
     this.observe(null, true)
   },

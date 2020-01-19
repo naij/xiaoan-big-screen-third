@@ -71,7 +71,7 @@ body {
   }
   .site-nav {
     position: absolute;
-    right: 30px;
+    right: 260px;
     top: 22px;
 
     li {
@@ -84,6 +84,10 @@ body {
         padding: 10px 20px;
         outline: none;
         border-radius: 6px;
+
+        .iconfont {
+          margin-right: 10px;
+        }
       }
       a:hover {
         background-color: rgba(0, 0, 0, 0.5);
@@ -95,6 +99,23 @@ body {
           
           color: #eee;
         }
+      }
+    }
+  }
+  .bp-entrance {
+    position: absolute;
+    right: 30px;
+    top: 22px;
+
+    a {
+      color: #ccc;
+      float: left;
+      padding: 10px 20px;
+      outline: none;
+      border-radius: 6px;
+
+      .iconfont {
+        margin-right: 10px;
       }
     }
   }
@@ -135,6 +156,15 @@ body {
 }
 
 .status-404 {
-  width: 400px;
-  margin: 80px auto;
+  color: #fff;
+  text-align: center;
+  margin: 100px 0;
+
+  .text-404 {
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+  .text-tips {
+    font-size: 18px;
+  }
 }

@@ -7,7 +7,7 @@ define('app/views/common/404',["magix"],function(require,exports,module){
 var Magix = require('magix')
 
 module.exports = Magix.View.extend({
-  tmpl: "<div class=\"status-404\"><img src=\"/assets/img/404.jpg\"></div>",
+  tmpl: "<div class=\"status-404\"><div class=\"text-404\">404</div><div class=\"text-tips\">抱歉，您访问的页面出错啦</div></div>",
   render: function() {
     var me = this
     me.setView()
