@@ -28,6 +28,13 @@ mat.task('pushState', function () {
     ])
 })
 
+mat.task('pushStateBuild', function () {
+  mat.url([/^((?!(\/tp\/|\.(css|less|js|html|ico|swf|png|gif))).)*$/])
+    .rewrite([
+      [/(\/.*)+/, 'index.html']
+    ])
+})
+
 mat.task('default', ['less', 'combine', 'pushState'], function () {
   mat.url([/\/tp\//])
     .use(proxy({
@@ -35,7 +42,7 @@ mat.task('default', ['less', 'combine', 'pushState'], function () {
     }))
 })
 
-mat.task('build', ['pushState'], function () {
+mat.task('build', ['pushStateBuild'], function () {
   mat.url([/\/tp\//])
     .use(proxy({
       proxyPass: '183.129.224.22:7780'
